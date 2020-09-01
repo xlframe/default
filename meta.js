@@ -60,7 +60,7 @@ module.exports = {
       when: answers => answers.features.includes('isNotTest') && !answers.features.includes('useDefaultConfig'),
       default: 'standalone',
       type: 'list',
-      message: 'Vue build',
+      message: 'Vue build1',
       choices: [
         {
           name: 'Runtime + Compiler: recommended for most users',
@@ -76,10 +76,10 @@ module.exports = {
       ],
     },
     lint: {
-      when: (answers) => answers.isNotTest && !answers.useDefaultConfig,
+      when: (answers) => false,
       type: 'confirm',
       default: false,
-      message: 'Use ESLint to lint your code?',
+      message: 'Use ESLint1 to lint your code?',
     },
     lintConfig: {
       when: (answers) => answers.isNotTest && answers.lint && !answers.useDefaultConfig,
