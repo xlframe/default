@@ -4,7 +4,6 @@
   "description": "A Vue.js project",
   "author": "CircleCI",
   "build": "runtime",
-  "router": false,
   "lint": true,
   "lintConfig": "standard",
   "unit": true,
