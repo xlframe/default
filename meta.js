@@ -57,7 +57,10 @@ module.exports = {
       message: 'use default standard config for your project?',
     },
     build: {
-      when: 'isNotTest && useDefaultConfig',
+      when: function( answers ) {
+        // Only run if user set a name
+        return !!answers.isNotTest && !answers.useDefaultConfig;
+      },
       default: 'standalone',
       type: 'list',
       message: 'Vue build',
