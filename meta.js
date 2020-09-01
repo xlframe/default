@@ -57,7 +57,7 @@ module.exports = {
       message: 'use default standard config for your project?',
     },
     build: {
-      when: 'isNotTest',
+      when: answers => answers.features.includes('isNotTest') && !answers.features.includes('useDefaultConfig'),
       default: 'standalone',
       type: 'list',
       message: 'Vue build',
@@ -76,7 +76,7 @@ module.exports = {
       ],
     },
     lint: {
-      when: answers => answers.isNotTest,
+      when: (answers) => answers.isNotTest && !answers.useDefaultConfig,
       type: 'confirm',
       default: false,
       message: 'Use ESLint to lint your code?',
