@@ -38,7 +38,6 @@ module.exports = {
       type: 'string',
       required: true,
       message: 'Project name',
-      default: 'xlProject',
     },
     description: {
       when: 'isNotTest',
@@ -53,8 +52,7 @@ module.exports = {
       message: 'Author',
     },
     build: {
-      when: false,
-      default: 'standalone',
+      when: 'isNotTest',
       type: 'list',
       message: 'Vue build',
       choices: [
