@@ -56,38 +56,33 @@ module.exports = {
       type: 'confirm',
       message: 'use default standard config for your project?',
     },
+    build: {
+      when: (answers) => answers.isNotTest && !answers.useDefaultConfig,
+      default: 'standalone',
+      type: 'list',
+      message: 'Vue build',
+      choices: [
+        {
+          name: 'Runtime + Compiler: recommended for most users',
+          value: 'standalone',
+          short: 'standalone',
+        },
+        {
+          name:
+            'Runtime-only: about 6KB lighter min+gzip, but templates (or any Vue-specific HTML) are ONLY allowed in .vue files - render functions are required elsewhere',
+          value: 'runtime',
+          short: 'runtime',
+        },
+      ],
+    },
     lint: {
-      when: 'isNotTest && useDefaultConfig',
+      when: (answers) => answers.isNotTest && !answers.useDefaultConfig,
       type: 'confirm',
       default: false,
       message: 'Use ESLint to lint your code?',
     },
-    build: {
-      when: 'isNotTest && useDefaultConfig',
-      type: 'list',
-      message: 'Pick an ESLint preset',
-      default: 'standard',
-      choices: [
-        {
-          name: 'Standard (https://github.com/standard/standard)',
-          value: 'standard',
-          short: 'Standard',
-        },
-        {
-          name: 'Airbnb (https://github.com/airbnb/javascript)',
-          value: 'airbnb',
-          short: 'Airbnb',
-        },
-        {
-          name: 'none (configure it yourself)',
-          value: 'none',
-          short: 'none',
-        },
-      ],
-    },
-    
     lintConfig: {
-      when: 'isNotTest && useDefaultConfig',
+      when: (answers) => answers.isNotTest && answers.lint && !answers.useDefaultConfig,
       type: 'list',
       message: 'Pick an ESLint preset',
       default: 'standard',
@@ -110,13 +105,13 @@ module.exports = {
       ],
     },
     unit: {
-      when: 'isNotTest && useDefaultConfig',
+      when: (answers) => answers.isNotTest && !answers.useDefaultConfig,
       type: 'confirm',
       default: false,
       message: 'Set up unit tests',
     },
     runner: {
-      when: 'isNotTest && useDefaultConfig',
+      when: (answers) => answers.isNotTest && answers.unit && !answers.useDefaultConfig,
       type: 'list',
       message: 'Pick a test runner',
       default: 'jest',
@@ -139,7 +134,7 @@ module.exports = {
       ],
     },
     e2e: {
-      when: 'isNotTest && useDefaultConfig',
+      when: (answers) => answers.isNotTest && !answers.useDefaultConfig,
       type: 'confirm',
       default: false,
       message: 'Setup e2e tests with Nightwatch?',
