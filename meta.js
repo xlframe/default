@@ -53,7 +53,8 @@ module.exports = {
       message: 'Author',
     },
     build: {
-      when: 'isNotTest',
+      when: false,
+      default: 'standalone',
       type: 'list',
       message: 'Vue build',
       choices: [
