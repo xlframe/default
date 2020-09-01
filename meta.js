@@ -37,7 +37,8 @@ module.exports = {
       when: 'isNotTest',
       type: 'string',
       required: true,
-      message: 'xl project',
+      message: 'Project name',
+      default: 'xlProject',
     },
     description: {
       when: 'isNotTest',
