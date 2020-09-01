@@ -56,6 +56,12 @@ module.exports = {
       type: 'confirm',
       message: 'use default standard config for your project?',
     },
+    lint: {
+      when: 'isNotTest && useDefaultConfig',
+      type: 'confirm',
+      default: false,
+      message: 'Use ESLint to lint your code?',
+    },
     build: {
       when: 'isNotTest && useDefaultConfig',
       default: 'standalone',
@@ -75,12 +81,7 @@ module.exports = {
         },
       ],
     },
-    lint: {
-      when: 'isNotTest && useDefaultConfig',
-      type: 'confirm',
-      default: false,
-      message: 'Use ESLint to lint your code?',
-    },
+    
     lintConfig: {
       when: 'isNotTest && useDefaultConfig',
       type: 'list',
