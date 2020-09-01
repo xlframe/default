@@ -51,8 +51,14 @@ module.exports = {
       type: 'string',
       message: 'Author',
     },
-    build: {
+    useDefaultConfig: {
       when: 'isNotTest',
+      type: 'confirm',
+      message: 'use default standard config for your project?',
+    },
+    build: {
+      when: 'isNotTest && useDefaultConfig',
+      default: 'standalone',
       type: 'list',
       message: 'Vue build',
       choices: [
@@ -70,14 +76,16 @@ module.exports = {
       ],
     },
     lint: {
-      when: 'isNotTest',
+      when: 'isNotTest && useDefaultConfig',
       type: 'confirm',
+      default: false,
       message: 'Use ESLint to lint your code?',
     },
     lintConfig: {
-      when: 'isNotTest && lint',
+      when: 'isNotTest && lint && useDefaultConfig',
       type: 'list',
       message: 'Pick an ESLint preset',
+      default: 'standard',
       choices: [
         {
           name: 'Standard (https://github.com/standard/standard)',
@@ -97,14 +105,16 @@ module.exports = {
       ],
     },
     unit: {
-      when: 'isNotTest',
+      when: 'isNotTest && useDefaultConfig',
       type: 'confirm',
+      default: false,
       message: 'Set up unit tests',
     },
     runner: {
-      when: 'isNotTest && unit',
+      when: 'isNotTest && unit && useDefaultConfig',
       type: 'list',
       message: 'Pick a test runner',
+      default: 'jest',
       choices: [
         {
           name: 'Jest',
@@ -124,8 +134,9 @@ module.exports = {
       ],
     },
     e2e: {
-      when: 'isNotTest',
+      when: 'isNotTest && useDefaultConfig',
       type: 'confirm',
+      default: false,
       message: 'Setup e2e tests with Nightwatch?',
     },
     autoInstall: {
