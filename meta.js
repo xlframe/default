@@ -57,7 +57,7 @@ module.exports = {
       message: 'use default standard config for your project?',
     },
     build: {
-      when: (answers) => answers.isNotTest && !answers.useDefaultConfig,
+      when: 'isNotTest && useDefaultConfig',
       default: 'standalone',
       type: 'list',
       message: 'Vue build',
@@ -76,13 +76,13 @@ module.exports = {
       ],
     },
     lint: {
-      when: (answers) => answers.isNotTest && !answers.useDefaultConfig,
+      when: 'isNotTest && useDefaultConfig',
       type: 'confirm',
       default: false,
       message: 'Use ESLint to lint your code?',
     },
     lintConfig: {
-      when: (answers) => answers.isNotTest && answers.lint && !answers.useDefaultConfig,
+      when: 'isNotTest && lint && useDefaultConfig',
       type: 'list',
       message: 'Pick an ESLint preset',
       default: 'standard',
@@ -105,13 +105,13 @@ module.exports = {
       ],
     },
     unit: {
-      when: (answers) => answers.isNotTest && !answers.useDefaultConfig,
+      when: 'isNotTest && useDefaultConfig',
       type: 'confirm',
       default: false,
       message: 'Set up unit tests',
     },
     runner: {
-      when: (answers) => answers.isNotTest && answers.unit && !answers.useDefaultConfig,
+      when: 'isNotTest && unit && useDefaultConfig',
       type: 'list',
       message: 'Pick a test runner',
       default: 'jest',
@@ -134,7 +134,7 @@ module.exports = {
       ],
     },
     e2e: {
-      when: (answers) => answers.isNotTest && !answers.useDefaultConfig,
+      when: 'isNotTest && useDefaultConfig',
       type: 'confirm',
       default: false,
       message: 'Setup e2e tests with Nightwatch?',
