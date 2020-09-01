@@ -59,6 +59,7 @@ module.exports = {
     build: {
       when: function( answers ) {
         // Only run if user set a name
+        console.log(answers);
         return !!answers.isNotTest && !answers.useDefaultConfig;
       },
       default: 'standalone',
