@@ -57,7 +57,9 @@ module.exports = {
       message: 'use default standard config for your project?',
     },
     build: {
-      when: 'isNotTest && !useDefaultConfig',
+      when: function (data) {
+        console.log(data);
+      },
       default: 'standalone',
       type: 'list',
       message: 'Vue build',
