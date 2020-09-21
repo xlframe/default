@@ -8,7 +8,7 @@
       >
         <template slot="title">
           <i :class="list.icon"></i>
-          <span>{{list.resName}}</span>
+          <span>\{{list.resName}}</span>
         </template>
         <recursion-menu :menuList="list.children"></recursion-menu>
       </xl-submenu>
@@ -19,7 +19,7 @@
         @click.native="pushPath(list)"
       >
         <i :class="list.icon"></i>
-        <span>{{list.resName}}</span>
+        <span>\{{list.resName}}</span>
       </xl-menu-item>
     </template>
   </div>

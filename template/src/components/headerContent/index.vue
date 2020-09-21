@@ -10,7 +10,7 @@
               <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar" />
           </div>
           <div class="avatar-name">
-              <span>{{name}}</span>
+              <span>\{{name}}</span>
           </div>
         </div>
         <xl-dropdown-menu slot="dropdown">
