@@ -51,94 +51,6 @@ module.exports = {
       type: 'string',
       message: 'Author',
     },
-    useDefaultConfig: {
-      when: 'isNotTest',
-      type: 'confirm',
-      message: 'use default standard config for your project?',
-    },
-    build: {
-      when: answers => answers.features.includes('isNotTest') && !answers.features.includes('useDefaultConfig'),
-      default: 'standalone',
-      type: 'list',
-      message: 'Vue build1',
-      choices: [
-        {
-          name: 'Runtime + Compiler: recommended for most users',
-          value: 'standalone',
-          short: 'standalone',
-        },
-        {
-          name:
-            'Runtime-only: about 6KB lighter min+gzip, but templates (or any Vue-specific HTML) are ONLY allowed in .vue files - render functions are required elsewhere',
-          value: 'runtime',
-          short: 'runtime',
-        },
-      ],
-    },
-    lint: {
-      when: (answers) => false,
-      type: 'confirm',
-      default: false,
-      message: 'Use ESLint1 to lint your code?',
-    },
-    lintConfig: {
-      when: (answers) => answers.isNotTest && answers.lint && !answers.useDefaultConfig,
-      type: 'list',
-      message: 'Pick an ESLint preset',
-      default: 'standard',
-      choices: [
-        {
-          name: 'Standard (https://github.com/standard/standard)',
-          value: 'standard',
-          short: 'Standard',
-        },
-        {
-          name: 'Airbnb (https://github.com/airbnb/javascript)',
-          value: 'airbnb',
-          short: 'Airbnb',
-        },
-        {
-          name: 'none (configure it yourself)',
-          value: 'none',
-          short: 'none',
-        },
-      ],
-    },
-    unit: {
-      when: (answers) => answers.isNotTest && !answers.useDefaultConfig,
-      type: 'confirm',
-      default: false,
-      message: 'Set up unit tests',
-    },
-    runner: {
-      when: (answers) => answers.isNotTest && answers.unit && !answers.useDefaultConfig,
-      type: 'list',
-      message: 'Pick a test runner',
-      default: 'jest',
-      choices: [
-        {
-          name: 'Jest',
-          value: 'jest',
-          short: 'jest',
-        },
-        {
-          name: 'Karma and Mocha',
-          value: 'karma',
-          short: 'karma',
-        },
-        {
-          name: 'none (configure it yourself)',
-          value: 'noTest',
-          short: 'noTest',
-        },
-      ],
-    },
-    e2e: {
-      when: (answers) => answers.isNotTest && !answers.useDefaultConfig,
-      type: 'confirm',
-      default: false,
-      message: 'Setup e2e tests with Nightwatch?',
-    },
     autoInstall: {
       when: 'isNotTest',
       type: 'list',
@@ -164,17 +76,6 @@ module.exports = {
     },
   },
   filters: {
-    '.eslintrc.js': 'lint',
-    '.eslintignore': 'lint',
-    'config/test.env.js': 'unit || e2e',
-    'build/webpack.test.conf.js': "unit && runner === 'karma'",
-    'test/unit/**/*': 'unit',
-    'test/unit/index.js': "unit && runner === 'karma'",
-    'test/unit/jest.conf.js': "unit && runner === 'jest'",
-    'test/unit/karma.conf.js': "unit && runner === 'karma'",
-    'test/unit/specs/index.js': "unit && runner === 'karma'",
-    'test/unit/setup.js': "unit && runner === 'jest'",
-    'test/e2e/**/*': 'e2e',
   },
   complete: function(data, { chalk }) {
     const green = chalk.green
