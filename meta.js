@@ -51,6 +51,87 @@ module.exports = {
       type: 'string',
       message: 'Author',
     },
+    build: {
+      when: false,
+      default: 'standalone',
+      type: 'list',
+      message: 'Vue build1',
+      choices: [
+        {
+          name: 'Runtime + Compiler: recommended for most users',
+          value: 'standalone',
+          short: 'standalone',
+        },
+        {
+          name:
+            'Runtime-only: about 6KB lighter min+gzip, but templates (or any Vue-specific HTML) are ONLY allowed in .vue files - render functions are required elsewhere',
+          value: 'runtime',
+          short: 'runtime',
+        },
+      ],
+    },
+    lint: {
+      when: false,
+      type: 'confirm',
+      default: false,
+      message: 'Use ESLint1 to lint your code?',
+    },
+    lintConfig: {
+      when: false,
+      type: 'list',
+      message: 'Pick an ESLint preset',
+      default: 'standard',
+      choices: [
+        {
+          name: 'Standard (https://github.com/standard/standard)',
+          value: 'standard',
+          short: 'Standard',
+        },
+        {
+          name: 'Airbnb (https://github.com/airbnb/javascript)',
+          value: 'airbnb',
+          short: 'Airbnb',
+        },
+        {
+          name: 'none (configure it yourself)',
+          value: 'none',
+          short: 'none',
+        },
+      ],
+    },
+    unit: {
+      when: false,
+      type: 'confirm',
+      default: false,
+      message: 'Set up unit tests',
+    },
+    runner: {
+      when: false,
+      type: 'list',
+      message: 'Pick a test runner',
+      default: 'jest',
+      choices: [
+        {
+          name: 'Jest',
+          value: 'jest',
+          short: 'jest',
+        },
+        {
+          name: 'Karma and Mocha',
+          value: 'karma',
+          short: 'karma',
+        },
+        {
+          name: 'none (configure it yourself)',
+          value: 'noTest',
+          short: 'noTest',
+        },
+      ],
+    },
+    e2e: {
+      when: false,
+      default: false,
+    },
     autoInstall: {
       when: 'isNotTest',
       type: 'list',
